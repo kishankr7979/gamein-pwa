@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import './styles/loginPage.css';
 import AvatarIcon from '../assets/avatar-icon.png'
 import NextIcon from '../assets/next-icon.png'
+import ButtonComponent from '../../../util/lib/Components/buttonComponents';
 const LoginPage = () => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const  ButtonEvent = () => {
@@ -18,9 +19,7 @@ const LoginPage = () => {
                 <div className="phone-container">               
                     <input type="number" placeholder="Mobile Number" className="phone-number-container" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)}></input>
                  </div>
-                <div className="next-button-container">
-                    <button type="submit" className="submit-btn"><img src={NextIcon} alt="Next" height="30" width="30" onClick={ButtonEvent}/></button>
-                </div>
+                 <ButtonComponent buttonImage={NextIcon} buttonAction={ButtonEvent} buttonBackgroungColor='red' />
             </div>
         </div>
     )
