@@ -5,7 +5,9 @@ import NextIcon from '../assets/next-icon.png'
 const LoginPage = () => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const  ButtonEvent = () => {
-        alert(`OTP sent to ${phoneNumber}`);
+        if(phoneNumber === '') {alert('Please Enter phone number'); return; }
+        else if(phoneNumber.length < 10){alert('Please enter valid phone number'); return; }
+        alert(`OTP sent to +91${phoneNumber}`);
     }
     return (
         <div className="parent-container">
@@ -13,11 +15,11 @@ const LoginPage = () => {
                 <div className="img-container">
                     <img src={AvatarIcon} alt="avatar" height="49" width="49" />
                 </div>
-                <div>               
-                 <input type="number" placeholder="Mobile Number" className="phone-number-container" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)}></input>
+                <div className="phone-container">               
+                    <input type="number" placeholder="Mobile Number" className="phone-number-container" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)}></input>
                  </div>
                 <div className="next-button-container">
-                <button type="button" className="submit-btn"><img src={NextIcon} alt="Next" height="30" width="30" onClick={ButtonEvent}/></button>
+                    <button type="submit" className="submit-btn"><img src={NextIcon} alt="Next" height="30" width="30" onClick={ButtonEvent}/></button>
                 </div>
             </div>
         </div>
