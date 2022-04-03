@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import OtpInput from 'react-otp-input';
 import './style/otpScreen.css';
 import {useNavigate} from 'react-router-dom';
@@ -12,12 +12,19 @@ const OtpScreen = () => {
         alert('OTP Resent Successfully');
     }
     const [resendVisibility, setResendVisibility] = useState(false);
+    const [invalidOtp, setInvalidOtp] = useState(false);
     setTimeout(() => {
         setResendVisibility(true);
     }, 5000)
-    if(otp === '1234'){
-        navigate('/onboarding');
-    }
+    useEffect(() => {
+        if(otp === '1234'){
+            navigate('/onboarding');
+        }
+        if(otp.length === 4 && otp !== '1234'){
+            setInvalidOtp(true);
+            return;
+        }
+    },[otp])
     return (
         <div className="inside-parent">
             <div className="parent-div">
@@ -38,9 +45,14 @@ const OtpScreen = () => {
                             color: '#545454'
                         }}
                         isInputNum
-
                     />
                 </div>
+            </div>
+            <div style={{display: 'flex', flexDirection: 'column', marginTop: '4em'}}>
+            <div className="invalid-otp">
+                {invalidOtp && (
+                    <span>Incorrect OTP :(</span>
+                )}
             </div>
             <div className="resend">
                 {resendVisibility && (
@@ -48,6 +60,7 @@ const OtpScreen = () => {
                     Didn’t received OTP? <span id="resend-wording" onClick={resendOtp}>Resend</span>
                     </>
                 )}
+            </div>
             </div>
         </div>
     )

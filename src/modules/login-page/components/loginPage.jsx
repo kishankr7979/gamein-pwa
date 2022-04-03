@@ -10,7 +10,7 @@ const LoginPage = () => {
     let navigate = useNavigate();
     const  ButtonEvent = () => {
         if(phoneNumber === '') {alert('Please Enter phone number'); return; }
-        else if(phoneNumber.length < 10){alert('Please enter valid phone number'); return; }
+        else if(phoneNumber.length < 10 && phoneNumber.length > 10){alert('Please enter valid phone number'); return; }
         alert(`OTP sent to +91${phoneNumber}`);
         navigate('/otp-screen');
     }

@@ -3,7 +3,7 @@ import './style/welcomeScreen.css'
 import HiGamerIcon from '../assets/Group.png'
 import ButtonComponent from "../../../util/lib/Components/buttonComponents";
 import NextIcon from "../../login-page/assets/next-icon.png";
-
+import {useNavigate} from "react-router-dom";
 
 const ModalBox = (props) => {
     const [gender, setGender] = useState('');
@@ -30,6 +30,7 @@ const ModalBox = (props) => {
     );
 }
 const WelcomeScreen = () => {
+    let navigate = useNavigate();
     const [userDetails, setUserDetails] = useState({
         name: '',
         gender: '',
@@ -45,6 +46,7 @@ const WelcomeScreen = () => {
     const ButtonEvent = () => {
         if(userDetails.name !== '' && userDetails.gender !== ''){
             localStorage.setItem('userDetails', JSON.stringify(userDetails));
+            navigate('/home');
         }
         else{
             alert('Please fill these details');
