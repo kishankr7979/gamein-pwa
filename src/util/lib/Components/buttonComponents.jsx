@@ -1,10 +1,5 @@
 import React from 'react'
 import '.././styles/buttonComponent.css';
-// interface ButtonComponentsProps {
-//     buttonImage: any;
-//     buttonAction: () => void;
-//     buttonBackgroungColor: any;
-// };
 const ButtonComponents = (props) => {
     return (
         <div>

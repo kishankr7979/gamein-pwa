@@ -16,20 +16,22 @@ const LoginPage = () => {
     }
     return (
         <div className="parent-container">
-        <div className="gamein-logo-container">
+            <div className="login-box-main-container">
+                 <div className="gamein-logo-container">
                 <img src={GameInIcon} alt="gamein-logo" height="103" width="156" />
                 <div className="gamein-wording-container">
-                <span className="game-wording">Game<span className="in-wording">IN</span></span> 
+                <span className="game-wording">Game<span className="in-wording">IN</span></span>
                 </div>
             </div>
             <div className="login-box-container">
                 <div className="img-container">
                     <img src={AvatarIcon} alt="avatar" height="49" width="49" />
                 </div>
-                <div className="phone-container">               
+                <div className="phone-container">
                     <input type="number" placeholder="Mobile Number" className="phone-number-container" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)}></input>
                  </div>
                  <ButtonComponent buttonImage={NextIcon} buttonAction={ButtonEvent} buttonBackgroungColor='red' />
+            </div>
             </div>
         </div>
     )

@@ -1,29 +1,53 @@
-import React, { useState } from 'react'
-
+import React, {useState} from 'react'
+import OtpInput from 'react-otp-input';
 import './style/otpScreen.css';
+import {useNavigate} from 'react-router-dom';
 const OtpScreen = () => {
-    const [otp, setOtp] = useState({
-        firstValue: '',
-        secondValue: '',
-        thirdValue: '',
-        fourthValue: ''
-    });
-    console.log(otp);
+    const [otp, setOtp] = useState('');
+    let navigate = useNavigate();
+    const handleOtpChange = (data) => {
+        setOtp(data);
+    }
+    const resendOtp = () => {
+        alert('OTP Resent Successfully');
+    }
+    const [resendVisibility, setResendVisibility] = useState(false);
+    setTimeout(() => {
+        setResendVisibility(true);
+    }, 5000)
+    if(otp === '1234'){
+        navigate('/onboarding');
+    }
     return (
-        <div className="parent-div">
-            <div className="input-main-container">
-                <div >
-                    <input type="number" value={otp.firstValue} onChange={(e) => setOtp({ ...otp, firstValue: e.target.value })} id="input-container"/>
+        <div className="inside-parent">
+            <div className="parent-div">
+                <div className="input-main-container">
+                    <OtpInput
+                        value={otp}
+                        onChange={handleOtpChange}
+                        numInputs={4}
+                        separator={<span> - </span>}
+                        inputStyle={{
+                            height: '74px',
+                            width: '64px',
+                            background: '#FFFFFF',
+                            border: '2px solid #000000',
+                            boxSizing: 'border-box',
+                            borderRadius: '10px',
+                            fontSize: '22px',
+                            color: '#545454'
+                        }}
+                        isInputNum
+
+                    />
                 </div>
-                <div >
-                    <input type="number" value={otp.secondValue} onChange={(e) => setOtp({ ...otp, secondValue: e.target.value  })} id="input-container"/>
-                </div>
-                <div >
-                    <input type="number" value={otp.thirdValue} onChange={(e) => setOtp({ ...otp, thirdValue: e.target.value  })} id="input-container"/>
-                </div>
-                <div>
-                    <input type="number" value={otp.fourthValue} onChange={(e) => setOtp({ ...otp, fourthValue: e.target.value  })} id="input-container"/>
-                </div>
+            </div>
+            <div className="resend">
+                {resendVisibility && (
+                    <>
+                    Didn’t received OTP? <span id="resend-wording" onClick={resendOtp}>Resend</span>
+                    </>
+                )}
             </div>
         </div>
     )

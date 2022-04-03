@@ -1,0 +1,66 @@
+.parent-container {
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(180deg, #809BE1 37.5%, rgba(203, 39, 229, 0) 100%);
+}
+.content-main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    top: 10%;
+    width: 100%;
+}
+.top-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 328px;
+    max-width: 700px;
+    height: 94px;
+    background: #F4F3F3;
+    border-radius: 10px;
+}
+.top-container-wording {
+    font-family: 'Short Stack';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 44px;
+    color: #000000;
+}
+.second-container {
+    text-align: left;
+    width: 328px;
+    max-width: 700px;
+    height: 470px;
+    background: #F4F3F3;
+    border-radius: 10px;
+}
+.heading-wording {
+    padding: 10px;
+    font-family: 'Short Stack';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 30px;
+    color: #000000;
+}
+.phone-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em;
+    flex-direction: column;
+    gap: 1em;
+}
+.phone-number-container{
+    width: 289px;
+    height: 38px;
+    background: #FFFFFF;
+    border: 2px solid #C4C4C4;
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-size: 20px;
+}

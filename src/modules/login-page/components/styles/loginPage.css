@@ -1,5 +1,7 @@
-.col{
-    padding: 0;
+.parent-container {
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(180deg, rgba(69, 111, 218, 0.67) 29.69%, rgba(183, 39, 222, 0.07) 99.99%, rgba(203, 39, 230, 0) 100%);
 }
 .gamein-logo-container{
     display: flex;
@@ -29,16 +31,18 @@
     
     color: #444444;
 }
-.parent-container {
-    height: 100vh;
-    width: 100vw;
-    background: linear-gradient(180deg, rgba(69, 111, 218, 0.67) 29.69%, rgba(183, 39, 222, 0.07) 99.99%, rgba(203, 39, 230, 0) 100%);
-    padding: 20px;
+.login-box-main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .login-box-container {
+    margin-left: 1em;
+    margin-right: 1em;
     position: absolute;
     top: 40%;
-    width: 100%;
+    width: 90%;
+    max-width: 500px;
     height: 371px;
     background: #FFFFFF;
     border-radius: 30px;
@@ -47,7 +51,7 @@
     padding: 20px;
 }
 .phone-container{
-    display: 'flex';
+    display: flex;
     justify-content: center;
     align-items: center;
 }
