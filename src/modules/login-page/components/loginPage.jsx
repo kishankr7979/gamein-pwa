@@ -12,6 +12,7 @@ const LoginPage = () => {
         if(phoneNumber === '') {alert('Please Enter phone number'); return; }
         else if(phoneNumber.length < 10 && phoneNumber.length > 10){alert('Please enter valid phone number'); return; }
         alert(`OTP sent to +91${phoneNumber}`);
+        localStorage.setItem('phoneNumber', phoneNumber);
         navigate('/otp-screen');
     }
     return (

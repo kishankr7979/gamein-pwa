@@ -7,6 +7,7 @@ import LoginPage from '../modules/login-page/components/loginPage';
 import OtpPage from '../modules/otp-page/components/otpScreen';
 import WelcomeScreen from "../modules/welcome-screen/components/welcomeScreen";
 import HomeScreen from "../modules/home-screen/components/homeScreen";
+import ProfileScreen from "../modules/profile-screen/components/profileScreen";
 import routerPaths from './index';
 
 const RouterConfig = () => {
@@ -16,7 +17,7 @@ const RouterConfig = () => {
     return (
         <Routes>
             <Route path={routerPaths.initialRoute}
-                   element={isUserLoggedIn ? <LoginPage/> : <HomeScreen />}
+                   element={isUserLoggedIn ? <LoginPage/> : <HomeScreen/>}
             />
             <Route path={routerPaths.otpScreen}
                    element={<OtpPage/>}
@@ -25,8 +26,10 @@ const RouterConfig = () => {
                    element={<WelcomeScreen/>}
             />
             <Route path={routerPaths.home}
-                   element={<HomeScreen />}
-                   />
+                   element={<HomeScreen/>}
+            />
+            <Route path={routerPaths.profile}
+                   element={ProfileScreen}/>
         </Routes>
     );
 }

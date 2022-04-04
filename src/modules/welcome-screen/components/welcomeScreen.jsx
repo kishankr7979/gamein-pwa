@@ -4,7 +4,6 @@ import HiGamerIcon from '../assets/Group.png'
 import ButtonComponent from "../../../util/lib/Components/buttonComponents";
 import NextIcon from "../../login-page/assets/next-icon.png";
 import {useNavigate} from "react-router-dom";
-
 const ModalBox = (props) => {
     const [gender, setGender] = useState('');
     const genderList = ['Male', 'Female', 'Others'];
@@ -34,6 +33,7 @@ const WelcomeScreen = () => {
     const [userDetails, setUserDetails] = useState({
         name: '',
         gender: '',
+        id: localStorage.getItem('phoneNumber')
     })
     const [visible, setVisible] = useState(false);
     const genderModal = () => {
