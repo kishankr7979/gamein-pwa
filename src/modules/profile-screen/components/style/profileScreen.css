@@ -1,0 +1,117 @@
+.main-container {
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(180deg, #7b79ce 29.69%, rgba(203, 39, 229, 0) 100%);
+}
+.toolbar {
+    display: flex;
+    height: 80px;
+    width: 100%;
+    background: rgba(226, 225, 229, 0.66);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.tool-bar-button {
+    margin: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: #F2F2F2;
+    height: 50px;
+    width: 50px;
+}
+.logout-container {
+    position: fixed;
+    right: 0;
+}
+.banner-img-container {
+    display: flex;
+    margin: auto;
+    margin-top: 2em;
+    width: 321px;
+    height: 79px;
+    background: #F4F3F3;
+    border-radius: 10px;
+}
+.profile-img-container {
+    position: relative;
+    top: -2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    width: 100px;
+    height: 100px;
+    background: #F4F3F3;
+    border: 5px solid #C4C4C4;
+    box-sizing: border-box;
+    border-radius: 50%;
+}
+.profile-details {
+    display: flex;
+    margin: auto;
+    width: 328px;
+    background: #F4F4F4;
+    border-radius: 10px;
+}
+.name-container {
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Short Stack';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 30px;
+    color: #000000;
+}
+.gamer-container {
+    display: flex;
+    margin: auto;
+    font-family: 'Short Stack';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: #C4C4C4;
+}
+.ui-divider {
+    width: 328px;
+    height: 0px;
+    border: 1px solid #C4C4C4;
+}
+.personal-details {
+    display: flex;
+    flex-direction: column;
+}
+.phone-number {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.phone {
+    font-family: 'Short Stack';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 30px;
+    color: #000000;
+}
+.number {
+    font-family: 'Short Stack';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 30px;
+    color: rgba(40, 40, 40, 0.66);
+}
+.bottom-placeholder-container {
+    position: fixed;
+    bottom: 10%;
+    right: 10%;
+}

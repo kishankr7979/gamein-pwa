@@ -67,7 +67,7 @@ const HomeScreen = () => {
                                 <img src={NewsFeedIcon} height="40" width="40"/>
                             </div>
                             <div className="profile-container">
-                                <div className="profile-internal-container">
+                                <div className="profile-internal-container" onClick={() => navigate('/profile')}>
                                 <img src={ProfileIcon} height="20" width="20" />
                                 </div>
                             </div>

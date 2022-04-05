@@ -29,7 +29,7 @@ const RouterConfig = () => {
                    element={<HomeScreen/>}
             />
             <Route path={routerPaths.profile}
-                   element={ProfileScreen}/>
+                   element={<ProfileScreen/>}/>
         </Routes>
     );
 }
