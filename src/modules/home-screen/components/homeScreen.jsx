@@ -50,7 +50,6 @@ const HomeScreen = () => {
     }, []);
     let feedMainData;
     const addToFeed = () => {
-        setNewFeed(newFeed);
         const data = [...newsFeedDataContainer,
             { albumId: 1,
                 id: 1,
@@ -104,7 +103,7 @@ const HomeScreen = () => {
                 <div className="new-feed-post">
                     <div className="input-area-container">
                         <div className="input-area-internal-container">
-                            <textarea placeholder="what's on your mind?" value={newFeed} spellCheck className="input-area"/>
+                            <textarea placeholder="what's on your mind?" value={newFeed} onChange={(e) => setNewFeed(e.target.value)} spellCheck className="input-area" id="input-area"/>
                         </div>
                         <div className="input-area-buttons">
                         <div className="input-area-multi-buttons-container">
