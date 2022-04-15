@@ -47,6 +47,7 @@ const WelcomeScreen = () => {
         if(userDetails.name !== '' && userDetails.gender !== ''){
             localStorage.setItem('userDetails', JSON.stringify(userDetails));
             navigate('/home');
+            window.location.reload();
         }
         else{
             alert('Please fill these details');

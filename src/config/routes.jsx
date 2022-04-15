@@ -12,24 +12,31 @@ import routerPaths from './index';
 
 const RouterConfig = () => {
     const userDetails = JSON.parse(localStorage.getItem('userDetails'));
-    const isUserLoggedIn = userDetails === null || userDetails?.name === null || userDetails?.name === '';
-    console.log(userDetails);
+    const id = localStorage.getItem('phoneNumber');
+    const isUserEnteredPhoneNumber = id === null || id === undefined || id === '';
+    const isUserLoggedIn = userDetails?.id === null || userDetails?.id === '' || userDetails?.id === undefined;
+    console.log(isUserEnteredPhoneNumber);
     return (
         <Routes>
             <Route path={routerPaths.initialRoute}
                    element={isUserLoggedIn ? <LoginPage/> : <HomeScreen/>}
             />
-            <Route path={routerPaths.otpScreen}
-                   element={<OtpPage/>}
-            />
+                <Route path={routerPaths.otpScreen}
+                       element={isUserEnteredPhoneNumber ? <LoginPage/> : <OtpPage/>}
+                />
             <Route path={routerPaths.onboarding}
-                   element={<WelcomeScreen/>}
+                   element={isUserEnteredPhoneNumber ? <LoginPage/> : <WelcomeScreen/>}
             />
-            <Route path={routerPaths.home}
-                   element={<HomeScreen/>}
-            />
-            <Route path={routerPaths.profile}
-                   element={<ProfileScreen/>}/>
+            {!isUserLoggedIn && (
+                <>
+                <Route path={routerPaths.home}
+                element={<HomeScreen/>}
+                />
+                <Route path={routerPaths.profile}
+                element={<ProfileScreen/>}/>
+                </>
+                )}
+
         </Routes>
     );
 }

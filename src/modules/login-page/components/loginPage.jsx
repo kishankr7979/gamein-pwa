@@ -14,6 +14,7 @@ const LoginPage = () => {
         alert(`OTP sent to +91${phoneNumber}`);
         localStorage.setItem('phoneNumber', phoneNumber);
         navigate('/otp-screen');
+        window.location.reload();
     }
     return (
         <div className="parent-container">
