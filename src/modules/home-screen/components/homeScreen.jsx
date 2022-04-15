@@ -61,7 +61,10 @@ const HomeScreen = () => {
         feedMainData = feedData.concat(newsFeedDataContainer);
         setFeedData(feedMainData);
     }
-
+    const uploadFile = () => {
+        const fileInput  = document.getElementById('file-input-photos');
+        fileInput.click();
+    }
     const bottomTabList = [
         {
             id: 1,
@@ -108,7 +111,8 @@ const HomeScreen = () => {
                         <div className="input-area-buttons">
                         <div className="input-area-multi-buttons-container">
                             <div className="photos">
-                                <img src={PhotoIcon} height="10" width="10" />
+                                <input type="file" id="file-input-photos"/>
+                                <img src={PhotoIcon} height="10" width="10" onClick={uploadFile}/>
                                 Photos
                             </div>
                             <div className="videos">

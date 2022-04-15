@@ -111,9 +111,24 @@
     width: 90vw;
     border-radius: 15px;
     max-width: 720px;
-    height: 18vh;
+    height: 15vh;
     display: flex;
     background: #f2f2f2;
+}
+@media screen and (min-width: 350px) and (max-width: 380px){
+    .new-feed-post {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        position: absolute;
+        top: 10%;
+        width: 90vw;
+        border-radius: 15px;
+        max-width: 720px;
+        height: 18vh;
+        display: flex;
+        background: #f2f2f2;
+    }
 }
 .input-area-internal-container {
     display: flex;
@@ -148,24 +163,41 @@
 .photos {
     display: flex;
     flex: 0.3;
+    gap: 2px;
     justify-content: center;
     align-items: center;
     background: #F4F3F3;
     border: 1px solid #C4C4C4;
     box-sizing: border-box;
     border-radius: 10px;
-    filter: blur(2px);
+    font-family: 'Scada';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    /* identical to box height */
+    color: #000000;
+
 }
 .videos {
     display: flex;
     flex: 0.3;
     justify-content: center;
+    gap: 2px;
     align-items: center;
     background: #F4F3F3;
     border: 1px solid #C4C4C4;
     box-sizing: border-box;
     border-radius: 10px;
-    filter: blur(2px);
+    filter: blur(1px);
+    font-family: 'Scada';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    /* identical to box height */
+    color: #000000;
+
 }
 .submit {
     display: flex;
@@ -176,4 +208,7 @@
     border: 1px solid #C4C4C4;
     box-sizing: border-box;
     border-radius: 10px;
+}
+#file-input-photos {
+    display: none;
 }
