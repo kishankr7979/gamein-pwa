@@ -7,9 +7,16 @@
     display: flex;
     height: 80px;
     width: 100%;
+    max-width: 720px;
     background: rgba(226, 225, 229, 0.66);
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
+}
+.toolbar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
 }
 .tool-bar-button {
     margin: 15px;
@@ -21,9 +28,13 @@
     height: 50px;
     width: 50px;
 }
+.back-button-container {
+    flex: 0.5;
+}
 .logout-container {
-    position: fixed;
-    right: 0;
+    display: flex;
+    flex: 0.5;
+    justify-content: right;
 }
 .banner-img-container {
     display: flex;
@@ -114,4 +125,6 @@
     position: fixed;
     bottom: 10%;
     right: 10%;
+    width: 100%;
+    max-width: 720px;
 }

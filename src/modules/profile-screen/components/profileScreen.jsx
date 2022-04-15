@@ -24,8 +24,9 @@ const ProfileScreen = () => {
     return (
         <>
             <div className="main-container">
+                <div className="toolbar-container">
                 <div className="toolbar">
-                    <div>
+                    <div className="back-button-container">
                     <div className="tool-bar-button" onClick={ButtonEvent}>
                         <img src={BackIcon} height="25" width="25"/>
                     </div>
@@ -35,6 +36,7 @@ const ProfileScreen = () => {
                         <img src={LogOutIcon} height="50" width="50"/>
                     </div>
                     </div>
+                </div>
                 </div>
                 <div className="banner-img-container">
                 </div>

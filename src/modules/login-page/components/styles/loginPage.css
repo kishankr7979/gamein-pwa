@@ -2,11 +2,12 @@
     height: 100vh;
     width: 100vw;
     background: linear-gradient(180deg, rgba(69, 111, 218, 0.67) 29.69%, rgba(183, 39, 222, 0.07) 99.99%, rgba(203, 39, 230, 0) 100%);
+    min-height: 100vh;
 }
 .gamein-logo-container{
     display: flex;
     flex-direction: column;
-    position: absolute;
+    position: fixed;
     top: 15%;
     left: 10%;
 }
@@ -19,7 +20,6 @@
     font-weight: normal;
     font-size: 45px;
     line-height: 55px;
-    
     color: #C9C7C7;
 }
 .in-wording{
@@ -28,7 +28,6 @@
     font-weight: normal;
     font-size: 45px;
     line-height: 55px;
-    
     color: #444444;
 }
 .login-box-main-container {
@@ -39,11 +38,12 @@
 .login-box-container {
     margin-left: 1em;
     margin-right: 1em;
-    position: absolute;
+    position: fixed;
     top: 40%;
     width: 90%;
     max-width: 500px;
     height: 371px;
+    min-height: 371px;
     background: #FFFFFF;
     border-radius: 30px;
 }
