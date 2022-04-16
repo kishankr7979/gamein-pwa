@@ -1,13 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import './styles/homeScreen.css'
-import NewsFeedIcon from '../assets/news.png';
 import ProfileIcon from '../assets/pro.png'
 import PhotoIcon from '../assets/photos-icon.png';
 import VideoIcon from '../assets/videos-icon.png';
 import PostButton from '../assets/post-btn.png';
 import {useNavigate} from "react-router-dom";
-import axios from 'axios';
-
+import getAllFeeds from '../../../service';
+import BottomTabList from "../../../config/bottomTabList";
 const FeedComponent = (props) => {
     return (
         <>
@@ -44,14 +43,14 @@ const HomeScreen = () => {
     const [newsFeedDataContainer, setNewsFeedDataContainer] = useState([]);
     const [feedData, setFeedData] = useState({});
     useEffect(() => {
-        axios.get('https://jsonplaceholder.typicode.com/photos?_start=0&_limit=50')
-            .then((resp) => setFeedData(resp.data))
-            .catch((error) => console.error(error));
+       getAllFeeds(1,50)
+           .then((resp) => setFeedData(resp))
+           .catch((e) => console.error(e));
     }, []);
     let feedMainData;
     const addToFeed = () => {
         const data = [...newsFeedDataContainer,
-            { albumId: 1,
+            { albumId: Math.random(),
                 id: 1,
                 thumbnailUrl: "https://via.placeholder.com/150/92c952",
                 title: newFeed,
@@ -65,28 +64,13 @@ const HomeScreen = () => {
         const fileInput  = document.getElementById('file-input-photos');
         fileInput.click();
     }
-    const bottomTabList = [
-        {
-            id: 1,
-            name: 'Home',
-            icon: NewsFeedIcon,
-            onClick: '/'
-        },
-        {
-            id: 2,
-            name: 'Profile',
-            icon: ProfileIcon,
-            onClick: '/profile'
-        },
-
-    ]
     let navigate = useNavigate();
     return (
         <>
             <div className="parent-container">
                 <div className="bottom-tabs">
                     <div className="bottom-tabs-main-container">
-                        {bottomTabList.map((item) => {
+                        {BottomTabList.map((item) => {
                             return (
                                 <div className="bottom-tabs-container">
                                     <img src={item.icon} onClick={() => navigate(item.onClick)} height="40" width="40"/>
