@@ -5,7 +5,7 @@ import NextIcon from '../assets/next-icon.png'
 import ButtonComponent from '../../../util/lib/Components/buttonComponents';
 import GameInIcon from '../assets/gamein-logo.png'
 import {useNavigate} from 'react-router-dom';
-import {Firebase, auth} from '../../../config/firebase';
+import {Firebase, auth, firebase} from '../../../config/firebase';
 import OtpComponent from '../../otp-page/components/otpScreen';
 const LoginPage = () => {
     const [phoneNumber, setPhoneNumber] = useState('');
@@ -16,7 +16,7 @@ const LoginPage = () => {
         if(phoneNumber === '') {alert('Please Enter phone number'); return; }
         else if(phoneNumber.length < 10 && phoneNumber.length > 10){alert('Please enter valid phone number'); return; }
         //let verify  = new Firebase.auth.RecaptchaVerifier('recaptcha-container');
-        auth.signInWithPhoneNumber(`+91${phoneNumber}`, window.recaptchaVerifier = new Firebase.auth.RecaptchaVerifier(
+        auth.signInWithPhoneNumber(`+91${phoneNumber}`, window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
             "recaptcha-container", {
                 size: "invisible"
             }
