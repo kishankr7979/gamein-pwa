@@ -5,19 +5,32 @@ import NextIcon from '../assets/next-icon.png'
 import ButtonComponent from '../../../util/lib/Components/buttonComponents';
 import GameInIcon from '../assets/gamein-logo.png'
 import {useNavigate} from 'react-router-dom';
+import {Firebase, auth} from '../../../config/firebase';
+import OtpComponent from '../../otp-page/components/otpScreen';
 const LoginPage = () => {
     const [phoneNumber, setPhoneNumber] = useState('');
     let navigate = useNavigate();
+    const [step, setStep] = useState(1);
+    const [final, setFinal] = useState('');
     const  ButtonEvent = () => {
         if(phoneNumber === '') {alert('Please Enter phone number'); return; }
         else if(phoneNumber.length < 10 && phoneNumber.length > 10){alert('Please enter valid phone number'); return; }
-        alert(`OTP sent to +91${phoneNumber}`);
-        localStorage.setItem('phoneNumber', phoneNumber);
-        navigate('/otp-screen');
-        window.location.reload();
+        //let verify  = new Firebase.auth.RecaptchaVerifier('recaptcha-container');
+        auth.signInWithPhoneNumber(`+91${phoneNumber}`, window.recaptchaVerifier = new Firebase.auth.RecaptchaVerifier(
+            "recaptcha-container", {
+                size: "invisible"
+            }
+        )).then((res) => {
+            setFinal(res);
+            setStep(2);
+        }).catch((err) => console.error(err));
+
     }
+    
     return (
-        <div className="parent-container">
+        <>
+        {step === 1 ? ( <div className="parent-container">
+        <div id="recaptcha-container"></div>
             <div className="login-box-main-container">
                  <div className="gamein-logo-container">
                 <img src={GameInIcon} alt="gamein-logo" height="103" width="156" />
@@ -35,7 +48,8 @@ const LoginPage = () => {
                  <ButtonComponent buttonImage={NextIcon} buttonAction={ButtonEvent} buttonBackgroungColor='red' />
             </div>
             </div>
-        </div>
+        </div>) : (<OtpComponent final={final}/>)}
+        </>
     )
 }
 

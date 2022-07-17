@@ -1,16 +1,17 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './style/welcomeScreen.css'
 import HiGamerIcon from '../assets/Group.png'
 import ButtonComponent from "../../../util/lib/Components/buttonComponents";
 import NextIcon from "../../login-page/assets/next-icon.png";
 import {useNavigate} from "react-router-dom";
+import {supabase} from '../../../config/supabase';
 const ModalBox = (props) => {
     const [gender, setGender] = useState('');
     const genderList = ['Male', 'Female', 'Others'];
     const genderSet = (selected) => {
         setGender(selected)
-        props.closeModal()
         localStorage.setItem('gender', selected);
+        props.closeModal()
     }
     return (
         <>
@@ -33,7 +34,8 @@ const WelcomeScreen = () => {
     const [userDetails, setUserDetails] = useState({
         name: '',
         gender: '',
-        id: localStorage.getItem('phoneNumber')
+        id: JSON.parse(localStorage.getItem('token'))?.user?.uid,
+        phone: JSON.parse(localStorage.getItem('token'))?.user?.phoneNumber
     })
     const [visible, setVisible] = useState(false);
     const genderModal = () => {
@@ -43,11 +45,15 @@ const WelcomeScreen = () => {
     const closeModal = () => {
         setVisible(false);
     }
-    const ButtonEvent = () => {
+    const ButtonEvent = async () => {
         if(userDetails.name !== '' && userDetails.gender !== ''){
             localStorage.setItem('userDetails', JSON.stringify(userDetails));
-            navigate('/home');
-            window.location.reload();
+            const { data, error } = await supabase
+            .from('user-db')
+            .insert([userDetails])
+            if(data){
+                console.log('data sent');
+            }
         }
         else{
             alert('Please fill these details');

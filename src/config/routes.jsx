@@ -9,35 +9,37 @@ import WelcomeScreen from "../modules/welcome-screen/components/welcomeScreen";
 import HomeScreen from "../modules/home-screen/components/homeScreen";
 import ProfileScreen from "../modules/profile-screen/components/profileScreen";
 import routerPaths from './index';
-
 const RouterConfig = () => {
-    const userDetails = JSON.parse(localStorage.getItem('userDetails'));
-    const id = localStorage.getItem('phoneNumber');
-    const isUserEnteredPhoneNumber = id === null || id === undefined || id === '';
-    const isUserLoggedIn = userDetails?.id === null || userDetails?.id === '' || userDetails?.id === undefined;
-    console.log(isUserEnteredPhoneNumber);
+    const l = JSON.parse(localStorage.getItem('token'));
+    const user = l;
+    console.log(user);
+    // const [user] = useAuthState(auth);
+    // console.log(user);
     return (
-        <Routes>
-            <Route path={routerPaths.initialRoute}
-                   element={isUserLoggedIn ? <LoginPage/> : <HomeScreen/>}
-            />
-                <Route path={routerPaths.otpScreen}
-                       element={isUserEnteredPhoneNumber ? <LoginPage/> : <OtpPage/>}
-                />
-            <Route path={routerPaths.onboarding}
-                   element={isUserEnteredPhoneNumber ? <LoginPage/> : <WelcomeScreen/>}
-            />
-            {!isUserLoggedIn && (
-                <>
-                <Route path={routerPaths.home}
+        user ? (
+            <Routes>
+           <Route path={routerPaths.initialRoute}
                 element={<HomeScreen/>}
                 />
+                 <Route path={routerPaths.home}
+                element={<HomeScreen/>}
+                />
+                  <Route path={routerPaths.onboarding}
+                element={<WelcomeScreen/>}
+                />
                 <Route path={routerPaths.profile}
-                element={<ProfileScreen/>}/>
-                </>
-                )}
+            element={<ProfileScreen/>}/>
+            </Routes>
+        ) : (  <Routes>
+            <Route path={routerPaths.initialRoute}
 
-        </Routes>
+                element={<LoginPage/>}
+                />
+                 <Route path={routerPaths.login}
+            
+            element={<LoginPage/>}
+            />
+        </Routes>)
     );
 }
 export default RouterConfig;
