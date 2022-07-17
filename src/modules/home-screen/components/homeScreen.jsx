@@ -11,13 +11,15 @@ import BottomTabList from "../../../config/bottomTabList";
 import uuid from 'react-uuid'
 import { supabase } from '../../../config/supabase';
 import { AiFillLike } from "react-icons/ai";
+import {Rings} from 'react-loader-spinner';
 const FeedComponent = (props) => {
     return (
         <>
             <div className="news-feed-container-internal">
                 {props?.feedData?.length > 1 && props.feedData.map((item, index) => {
                     return (
-                        <>
+                        <div>
+                        {props.loading ? (<div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}><Rings ariaLabel="loading-indicator" color='grey'/></div>) : (
                             <div className="post-card-main-container" key={index}>
                                 <div className="internal-card-container">
                                     <div className="first-section-container">
@@ -30,15 +32,17 @@ const FeedComponent = (props) => {
                                     </div>
                                     <div className="second-section-container">
                                     {item?.image &&   <div className="post-image">
-                                            <img src={item?.url} height="90" width="280" style={{ borderRadius: '10px' }} />
+                                            <img src={item?.image} height="90" width="280" style={{ borderRadius: '10px' }} />
                                         </div>}
                                     </div>
                                     <div className="misc-container">
-                                        <AiFillLike color={props.likeImage ? 'blue' : 'grey'} onClick={() => props.updateLike(item?.post_id, item?.likes)}/> {item?.likes}
+                                        <AiFillLike color={props.likeImage && props.likedValue == item?.post_id ? 'blue' : 'grey'} onClick={() => props.updateLike(item?.post_id, item?.likes)}/> {item?.likes}
                                     </div>
                                 </div>
                             </div>
-                        </> 
+                        )}
+                      
+                        </div> 
                     );
                 })}
             </div>
@@ -49,6 +53,9 @@ const HomeScreen = () => {
     const [newsFeed, setNewsFeed] = useState();
     const [feedValue, setFeedValue] = useState('');
     const [image, setImage] = useState();
+    const [likedValue, setLikedValue] = useState('');
+    const [imageUrl, setImageUrl] = useState('');
+    const [loading, setLoading] = useState(false);
     const publishNewFeed = async () => {
         if(feedValue.length <= 0) return;
         const { data, error } = await supabase
@@ -56,7 +63,7 @@ const HomeScreen = () => {
             .insert({
                 post_id: uuid(),
                 feed_title: feedValue,
-                image: '',
+                image: imageUrl,
                 user_id: JSON.parse(localStorage.getItem('token'))?.user?.uid
             })
         if (data) {
@@ -80,10 +87,13 @@ const HomeScreen = () => {
     let navigate = useNavigate();
     const [likeImage, setLikeImage] = useState(false);
     const likePost = async(post_id, likes) => {
-        setLikeImage(!likeImage)
+        setLikedValue(post_id);
+        setLikeImage(true)
         const { data, error } = await supabase
         .from('feed-db')
         .update({likes: likes + 1})
+        .eq('post_id', post_id)
+        
     if (data) {
         console.log(data);
         await getFeedData();
@@ -91,6 +101,7 @@ const HomeScreen = () => {
 
     }
     const uploadImagetoStorage = async (file) => {
+        setLoading(true);
         const filePath = uuid() + '-' + file.name
         const { data, error } = await supabase.storage.from('feed-image').upload( filePath, file,{
             cacheControl: '3600',
@@ -100,8 +111,14 @@ const HomeScreen = () => {
         const { publicURL } = supabase.storage.from('feed-image').getPublicUrl(filePath)
         if(publicURL){
             console.log(publicURL);
+            setImageUrl(publicURL);
+            setLoading(false);
+        }
+        if(error){
+            setLoading(false);
         }
     }
+
     useEffect(() => {
         (async () => await getFeedData())();
     }, [])
@@ -123,14 +140,15 @@ const HomeScreen = () => {
                     </div>
                 </div>
                 <div className="news-feed-section">
-                    <FeedComponent feedData={newsFeed} likeImage={likeImage} updateLike={likePost}/>
+                    <FeedComponent feedData={newsFeed} likeImage={likeImage} updateLike={likePost} likedValue={likedValue} />
                 </div>
                 <div className="top-nav-main-container">
                     <div className="game-in-title">
                         Game<span className="in-title">IN</span>
                     </div>
                 </div>
-                <div className="new-feed-post">
+                {loading ? <div className="new-feed-post"><div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}><Rings ariaLabel="loading-indicator" color='grey'/></div></div>: (
+                    <div className="new-feed-post">
                     <div className="input-area-container">
                         <div className="input-area-internal-container">
                             <textarea placeholder="what's on your mind?" value={feedValue} onChange={(e) => setFeedValue(e.target.value)} spellCheck className="input-area" id="input-area" />
@@ -153,6 +171,7 @@ const HomeScreen = () => {
                         </div>
                     </div>
                 </div>
+                )}
             </div>
         </>
     );

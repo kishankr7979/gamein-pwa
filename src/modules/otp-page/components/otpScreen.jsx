@@ -27,6 +27,7 @@ const OtpScreen = (props) => {
                 }
                 else {
                     navigate('/home');
+                    window.location.reload();
                 }
             }).catch((error) => { 
                 setInvalidOtp(true);

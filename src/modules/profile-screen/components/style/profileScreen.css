@@ -62,6 +62,7 @@
 .profile-details {
     display: flex;
     margin: auto;
+    flex-direction: column;
     width: 328px;
     background: #F4F4F4;
     border-radius: 10px;
