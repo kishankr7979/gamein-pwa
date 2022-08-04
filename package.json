@@ -14,6 +14,7 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.26.1",
     "firebase": "8.3.1",
+    "imagekitio-react": "^1.1.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-firebase-hooks": "^5.0.3",
