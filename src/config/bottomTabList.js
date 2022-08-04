@@ -1,18 +1,17 @@
-import NewsFeedIcon from "../modules/home-screen/assets/news.png";
-import ProfileIcon from "../modules/home-screen/assets/pro.png";
-
+import {FaUserFriends} from 'react-icons/fa';
+import {ImFeed} from 'react-icons/im';
 const bottomTabList = [
     {
         id: 1,
         name: 'Home',
-        icon: NewsFeedIcon,
+        icon: <ImFeed size={50}/>,
         onClick: '/'
     },
     {
         id: 2,
-        name: 'Profile',
-        icon: ProfileIcon,
-        onClick: '/profile'
+        name: 'Freinds',
+        icon: <FaUserFriends size={50}/>,
+        onClick: '/add-buddy'
     },
 
 ];

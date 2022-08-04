@@ -11,6 +11,8 @@ import BottomTabList from "../../../config/bottomTabList";
 import uuid from 'react-uuid'
 import { supabase } from '../../../config/supabase';
 import { AiFillLike } from "react-icons/ai";
+import { CgProfile } from 'react-icons/cg';
+import { BiMessageSquareDots } from 'react-icons/bi';
 import { Rings } from 'react-loader-spinner';
 const FeedComponent = (props) => {
     return (
@@ -135,24 +137,17 @@ const HomeScreen = () => {
     return (
         <>
             <div className="parent-container">
-                <div className="bottom-tabs">
-                    <div className="bottom-tabs-main-container">
-                        {BottomTabList.map((item) => {
-                            return (
-                                <div className="bottom-tabs-container">
-                                    <img src={item.icon} onClick={() => navigate(item.onClick)} height="40" width="40" />
-                                </div>
-                            );
-                        })}
+                <div className="top-nav-main-container">
+                    <div className="game-in-title">
+                        <CgProfile color='black' onClick={() => navigate('/profile')}/>
+                        <div>
+                            Game<span className="in-title">IN</span>
+                        </div>
+                        <BiMessageSquareDots color='#FFFFFF' />
                     </div>
                 </div>
                 <div className="news-feed-section">
                     <FeedComponent feedData={newsFeed} likeImage={likeImage} updateLike={likePost} likedValue={likedValue} userId={JSON.parse(localStorage.getItem('token'))?.user?.uid} />
-                </div>
-                <div className="top-nav-main-container">
-                    <div className="game-in-title">
-                        Game<span className="in-title">IN</span>
-                    </div>
                 </div>
                 {loading ? <div className="new-feed-post"><div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}><Rings ariaLabel="loading-indicator" color='grey' /></div></div> : (
                     <div className="new-feed-post">
@@ -179,6 +174,17 @@ const HomeScreen = () => {
                         </div>
                     </div>
                 )}
+            </div>
+            <div className="bottom-tabs">
+                <div className="bottom-tabs-main-container">
+                    {BottomTabList.map((item) => {
+                        return (
+                            <div className="bottom-tabs-container">
+                                <span onClick={() => navigate(item.onClick)}>{item.icon}</span>
+                            </div>
+                        );
+                    })}
+                </div>
             </div>
         </>
     );

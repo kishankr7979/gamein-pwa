@@ -1,0 +1,141 @@
+.main-class {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(180deg, #809BE1 37.5%, rgba(203, 39, 229, 0) 100%);
+    position: relative;
+}
+
+.add-freind-top-navigation {
+    display: flex;
+    padding: 12px;
+}
+
+.back-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #FFFFFF;
+    padding: 12px;
+    border-radius: 50%;
+}
+
+.manage-buddies {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #FFFFFF;
+    padding: 12px;
+}
+
+.buddies-wording {
+    font-family: 'Short Stack';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+
+    color: #000000;
+}
+
+.incoming-requests-container {
+    display: flex;
+    flex-direction: column;
+    background: #F4F3F3;
+    border-radius: 10px;
+    margin: 0 10px 0 10px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+}
+
+.header-wording {
+    font-family: 'Short Stack';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    /* identical to box height */
+
+
+    color: #000000;
+}
+
+.divider {
+    border: 1px solid #C4C4C4;
+}
+
+.request-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px 12px 24px;
+}
+
+.friend-name {
+    font-family: 'Short Stack';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    /* identical to box height */
+
+
+    color: #000000;
+}
+
+.request-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.request-accept {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px;
+    border: 1px solid #C4C4C4;
+    border-radius: 10px;
+}
+
+.add-requests-container {
+    background: #F4F3F3;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 0 10px 0 10px;
+    padding: 12px;
+}
+
+.add-friend-container {
+    height: 140px;
+    width: 140px;
+    padding: 18px;
+    border: 1px solid #C4C4C4;
+    border-radius: 12px;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.send-req-name {
+    font-family: 'Short Stack';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+
+    color: #000000;
+}

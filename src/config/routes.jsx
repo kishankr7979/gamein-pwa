@@ -8,6 +8,7 @@ import OtpPage from '../modules/otp-page/components/otpScreen';
 import WelcomeScreen from "../modules/welcome-screen/components/welcomeScreen";
 import HomeScreen from "../modules/home-screen/components/homeScreen";
 import ProfileScreen from "../modules/profile-screen/components/profileScreen";
+import AddFreind from "../modules/add-freind/components/addFreind";
 import routerPaths from './index';
 const RouterConfig = () => {
     const l = JSON.parse(localStorage.getItem('token'));
@@ -18,26 +19,28 @@ const RouterConfig = () => {
     return (
         user ? (
             <Routes>
-           <Route path={routerPaths.initialRoute}
-                element={<HomeScreen/>}
+                <Route path={routerPaths.initialRoute}
+                    element={<HomeScreen />}
                 />
-                 <Route path={routerPaths.home}
-                element={<HomeScreen/>}
+                <Route path={routerPaths.home}
+                    element={<HomeScreen />}
                 />
-                  <Route path={routerPaths.onboarding}
-                element={<WelcomeScreen/>}
+                <Route path={routerPaths.onboarding}
+                    element={<WelcomeScreen />}
                 />
                 <Route path={routerPaths.profile}
-            element={<ProfileScreen/>}/>
+                    element={<ProfileScreen />} />
+                <Route path={routerPaths.addBuddy}
+                    element={<AddFreind />} />
             </Routes>
-        ) : (  <Routes>
+        ) : (<Routes>
             <Route path={routerPaths.initialRoute}
 
-                element={<LoginPage/>}
-                />
-                 <Route path={routerPaths.login}
-            
-            element={<LoginPage/>}
+                element={<LoginPage />}
+            />
+            <Route path={routerPaths.login}
+
+                element={<LoginPage />}
             />
         </Routes>)
     );

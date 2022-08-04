@@ -53,6 +53,7 @@ const WelcomeScreen = () => {
             .insert([userDetails])
             if(data){
                 console.log('data sent');
+                navigate('/home')
             }
         }
         else{

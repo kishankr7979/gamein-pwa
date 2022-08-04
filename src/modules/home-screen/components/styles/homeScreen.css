@@ -98,6 +98,11 @@
     border-bottom-left-radius: 15px;
 }
 .game-in-title {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 10px 0 10px;
     font-family: 'Short Stack';
     font-style: normal;
     font-weight: 400;
