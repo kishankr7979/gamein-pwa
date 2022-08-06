@@ -9,6 +9,7 @@ import WelcomeScreen from "../modules/welcome-screen/components/welcomeScreen";
 import HomeScreen from "../modules/home-screen/components/homeScreen";
 import ProfileScreen from "../modules/profile-screen/components/profileScreen";
 import AddFreind from "../modules/add-freind/components/addFreind";
+import MyFreinds from "../modules/my-freinds/components/MyFreinds";
 import routerPaths from './index';
 const RouterConfig = () => {
     const l = JSON.parse(localStorage.getItem('token'));
@@ -32,6 +33,8 @@ const RouterConfig = () => {
                     element={<ProfileScreen />} />
                 <Route path={routerPaths.addBuddy}
                     element={<AddFreind />} />
+                <Route path={routerPaths.myBuddy}
+                    element={<MyFreinds />} />
             </Routes>
         ) : (<Routes>
             <Route path={routerPaths.initialRoute}

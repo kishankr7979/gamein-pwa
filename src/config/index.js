@@ -4,7 +4,8 @@ const routerPaths = {
     otpScreen: '/otp-screen',
     onboarding: '/onboarding',
     home: '/home',
-    profile: '/profile',
+    profile: '/profile/:id',
     addBuddy: '/add-buddy',
+    myBuddy: '/my-buddy'
 };
 export default routerPaths;

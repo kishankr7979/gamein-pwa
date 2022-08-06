@@ -14,39 +14,43 @@ import { AiFillLike } from "react-icons/ai";
 import { CgProfile } from 'react-icons/cg';
 import { BiMessageSquareDots } from 'react-icons/bi';
 import { Rings } from 'react-loader-spinner';
+import axios from 'axios';
 const FeedComponent = (props) => {
     return (
         <>
             <div className="news-feed-container-internal">
-                {props?.feedData?.length > 0 && props.feedData.map((item, index) => {
-                    return (
-                        <div>
-                            {props.loading ? (<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}><Rings ariaLabel="loading-indicator" color='grey' /></div>) : (
-                                <div className="post-card-main-container" key={item?.post_id}>
-                                    <div className="internal-card-container">
-                                        <div className="first-section-container">
-                                            <div className="profile-img">
-                                                <img src={ProfileIcon} height="20" width="20" />
+                {props.loading ? (<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh' }}><Rings ariaLabel="loading-indicator" color='#2196F3' width='200px' height='200px' /></div>) : (<>
+                    {props?.feedData?.length > 0 && props.feedData.map((item, index) => {
+                        return (
+                            <div>
+                                {props.loading ? (<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}><Rings ariaLabel="loading-indicator" color='grey' /></div>) : (
+                                    <div className="post-card-main-container" key={item?.post_id}>
+                                        <div className="internal-card-container">
+                                            <div className="first-section-container">
+                                                <div className="profile-img">
+                                                    <img src={ProfileIcon} height="20" width="20" />
+                                                </div>
+                                                <div className="feed-title-container">
+                                                    {item?.feed_title}
+                                                </div>
                                             </div>
-                                            <div className="feed-title-container">
-                                                {item?.feed_title}
+                                            <div className="second-section-container">
+                                                {item?.image && <div className="post-image">
+                                                    <img src={item?.image} height="90" width="280" style={{ borderRadius: '10px' }} />
+                                                </div>}
                                             </div>
-                                        </div>
-                                        <div className="second-section-container">
-                                            {item?.image && <div className="post-image">
-                                                <img src={item?.image} height="90" width="280" style={{ borderRadius: '10px' }} />
-                                            </div>}
-                                        </div>
-                                        <div className="misc-container">
-                                            <AiFillLike color={item?.likes?.includes(props.userId) ? 'blue' : 'grey'} onClick={() => props.updateLike(item?.post_id, item?.likes)} /> {item?.likes?.length}
+                                            <div className="misc-container">
+                                                <AiFillLike color={item?.likes?.includes(props.userId) ? 'blue' : 'grey'} onClick={() => props.updateLike(item?.post_id, item?.likes)} /> {item?.likes?.length}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            )}
+                                )}
 
-                        </div>
-                    );
-                })}
+                            </div>
+                        );
+                    })}
+                </>)}
+
                 {!props.loading && props?.feedData?.length === 0 && <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%' }}>No posts yet :( </div>}
             </div>
         </>
@@ -54,11 +58,13 @@ const FeedComponent = (props) => {
 }
 const HomeScreen = () => {
     const [newsFeed, setNewsFeed] = useState();
+    const userId = JSON.parse(localStorage.getItem('token'))?.user?.uid
     const [feedValue, setFeedValue] = useState('');
     const [image, setImage] = useState();
     const [likedValue, setLikedValue] = useState('');
     const [imageUrl, setImageUrl] = useState('');
     const [loading, setLoading] = useState(false);
+    const [feedLoading, setFeedLoading] = useState(false);
     const publishNewFeed = async () => {
         if (feedValue.length <= 0) return;
         const { data, error } = await supabase
@@ -67,19 +73,21 @@ const HomeScreen = () => {
                 post_id: uuid(),
                 feed_title: feedValue,
                 image: imageUrl,
-                user_id: JSON.parse(localStorage.getItem('token'))?.user?.uid
+                user_id: userId
             })
         if (data) {
             await getFeedData();
         }
     }
     const getFeedData = async () => {
+        setFeedLoading(true);
         const { data, error } = await supabase
             .from('feed-db')
             .select('*')
         if (data) {
             setNewsFeed(data);
         }
+        setFeedLoading(false);
         console.log(data)
     }
     const uploadFile = () => {
@@ -112,23 +120,46 @@ const HomeScreen = () => {
         else return;
 
     }
+
+    function getBase64(file, cb) {
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+            cb(reader.result)
+        };
+        reader.onerror = function (error) {
+            console.log('Error: ', error);
+        };
+    }
     const uploadImagetoStorage = async (file) => {
         setLoading(true);
         const filePath = uuid() + '-' + file.name
-        const { data, error } = await supabase.storage.from('feed-image').upload(filePath, file, {
-            cacheControl: '3600',
-            upsert: false,
-            contentType: 'image/png'
+        console.log(file);
+        let idCardBase64 = '';
+        getBase64(file, (result) => {
+            idCardBase64 = result;
+            console.log(result);
+            axios.post(`http://freeimage.host/api/1/upload/?key=6d207e02198a847aa98d0a2a901485a5&source=${result}`).then((resp) => {
+                console.log(resp);
+            })
+            setLoading(false);
+            debugger;
         })
-        const { publicURL } = supabase.storage.from('feed-image').getPublicUrl(filePath)
-        if (publicURL) {
-            console.log(publicURL);
-            setImageUrl(publicURL);
-            setLoading(false);
-        }
-        if (error) {
-            setLoading(false);
-        }
+   
+        // const { data, error } = await supabase.storage.from('feed-image').upload(filePath, file, {
+        //     cacheControl: '3600',
+        //     upsert: false,
+        //     contentType: 'image/png'
+        // })
+        // const { publicURL } = supabase.storage.from('feed-image').getPublicUrl(filePath)
+        // if (publicURL) {
+        //     console.log(publicURL);
+        //     setImageUrl(publicURL);
+        //     setLoading(false);
+        // }
+        // if (error) {
+        //     setLoading(false);
+        // }
     }
 
     useEffect(() => {
@@ -139,7 +170,7 @@ const HomeScreen = () => {
             <div className="parent-container">
                 <div className="top-nav-main-container">
                     <div className="game-in-title">
-                        <CgProfile color='black' onClick={() => navigate('/profile')}/>
+                        <CgProfile color='black' onClick={() => navigate(`/profile/${userId}`)} />
                         <div>
                             Game<span className="in-title">IN</span>
                         </div>
@@ -147,7 +178,7 @@ const HomeScreen = () => {
                     </div>
                 </div>
                 <div className="news-feed-section">
-                    <FeedComponent feedData={newsFeed} likeImage={likeImage} updateLike={likePost} likedValue={likedValue} userId={JSON.parse(localStorage.getItem('token'))?.user?.uid} />
+                    <FeedComponent feedData={newsFeed} likeImage={likeImage} updateLike={likePost} likedValue={likedValue} userId={JSON.parse(localStorage.getItem('token'))?.user?.uid} loading={feedLoading} />
                 </div>
                 {loading ? <div className="new-feed-post"><div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}><Rings ariaLabel="loading-indicator" color='grey' /></div></div> : (
                     <div className="new-feed-post">
