@@ -4,18 +4,18 @@ import { IoMdArrowBack } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
 import { CgProfile } from 'react-icons/cg';
 import { GrSend } from 'react-icons/gr';
-import {RiSendPlaneLine} from 'react-icons/ri';
+import { RiSendPlaneLine } from 'react-icons/ri';
 import { supabase } from '../../../config/supabase';
 import './styles/myFreinds.css';
 const Card = (props) => {
     return (
         <div className="card-parent">
-            <div className="avatar-name">
+            <div className="avatar-name" onClick={props.openProfile}>
                 <CgProfile size={40} />
                 {props.name}
             </div>
             <div className="send-message">
-                <RiSendPlaneLine size={20} color='#2196F3' />
+                <RiSendPlaneLine size={20} color='#2196F3' onClick={props.sendMessage} />
             </div>
         </div>
     );
@@ -51,8 +51,8 @@ const MyFreinds = () => {
             </div>
             {freinds && freinds.map(({ id, otherDetails }) => {
                 return (
-                    <div className="freind-list" key={id} onClick={() => navigate(`/profile/${id}`)}>
-                        <Card name={otherDetails.name} />
+                    <div className="freind-list" key={id}>
+                        <Card name={otherDetails.name} sendMessage={() => navigate(`/messages/${id}`)} openProfile={() => navigate(`/profile/${id}`)} />
                     </div>
                 );
             })}

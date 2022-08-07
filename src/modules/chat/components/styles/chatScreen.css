@@ -1,0 +1,61 @@
+.chatscreen-container {
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(180deg, #809BE1 37.5%, rgba(203, 39, 229, 0) 100%);
+    max-width: 700px;
+    position: relative;
+}
+
+.toolbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background: rgba(226, 225, 229, 0.66);
+    height: 80px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.tool-bar-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: #F2F2F2;
+    height: 50px;
+    width: 50px;
+}
+
+.chat-name {
+    font-family: 'Short Stack';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 20px;
+    /* identical to box height */
+
+
+    color: #000000;
+}
+
+.footer {
+    display: flex;
+    flex: 1;
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+
+}
+
+.send-message-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+.chat-input-container {
+    width: 100%;
+    background: rgba(226, 225, 229, 0.66);
+    padding: 15px;
+    height: 56px;
+}

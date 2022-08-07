@@ -6,6 +6,9 @@ const routerPaths = {
     home: '/home',
     profile: '/profile/:id',
     addBuddy: '/add-buddy',
-    myBuddy: '/my-buddy'
+    myBuddy: '/my-buddy',
+    allMessaged: '/messages',
+    chat: '/messages/:id',
+
 };
 export default routerPaths;

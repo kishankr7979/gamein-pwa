@@ -10,6 +10,8 @@ import HomeScreen from "../modules/home-screen/components/homeScreen";
 import ProfileScreen from "../modules/profile-screen/components/profileScreen";
 import AddFreind from "../modules/add-freind/components/addFreind";
 import MyFreinds from "../modules/my-freinds/components/MyFreinds";
+import Chats from "../modules/chat/components/Chat";
+import ChatScreen from "../modules/chat/components/ChatScreen";
 import routerPaths from './index';
 const RouterConfig = () => {
     const l = JSON.parse(localStorage.getItem('token'));
@@ -35,6 +37,10 @@ const RouterConfig = () => {
                     element={<AddFreind />} />
                 <Route path={routerPaths.myBuddy}
                     element={<MyFreinds />} />
+                <Route path={routerPaths.allMessaged}
+                    element={<Chats />} />
+                <Route path={routerPaths.chat}
+                    element={<ChatScreen />} />
             </Routes>
         ) : (<Routes>
             <Route path={routerPaths.initialRoute}

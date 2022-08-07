@@ -36,6 +36,15 @@ const AddFreind = () => {
         }
 
     }
+    const getCurrentUserData = async () => {
+        const { data, error } = await supabase
+            .from('user-db')
+            .select('*')
+            .match({ id: userId })
+        if (data) {
+            return data[0];
+        }
+    }
     const getFrndList = async (id) => {
         const { data, error } = await supabase
             .from('freinds-db')
@@ -51,16 +60,20 @@ const AddFreind = () => {
     }
     const addToFrndList = async (from, to, otherDetails) => {
         const res = await getFrndList(to);
+        const curr = await getCurrentUserData();
         if (res?.length === 0) {
             const { data, error } = await supabase
                 .from('freinds-db')
-                .insert([{ id: to, freinds: [{ id: from, otherDetails: otherDetails }] }])
+                .insert([{ id: to, freinds: [{ id: from, otherDetails: otherDetails }] }, {
+                    id: from, freinds: [{ id: to, otherDetails: curr }]
+                }])
         }
         else {
             const list = [...res?.[0]?.freinds, { id: from, otherDetails: otherDetails }];
+            const list2 = [...res?.[0]?.freinds, { id: to, otherDetails: curr }];
             const { data, error } = await supabase
                 .from('freinds-db')
-                .update({ freinds: list })
+                .update([{ freinds: list }, {freinds: list2}])
                 .match({ id: to })
 
         }
