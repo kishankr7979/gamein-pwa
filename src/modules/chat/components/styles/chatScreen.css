@@ -47,6 +47,21 @@
 
 }
 
+.chat-parent {
+    position: relative;
+}
+.chat-time {
+    position: absolute;
+    bottom: -10px;
+    right: 10px;
+}
+.chat-container {
+    padding: 12px;
+    background: #FFFFFF;
+    margin: 10px 10px 0 10px;
+    border-radius: 12px;
+    overflow: scroll;
+}
 .send-message-container {
     display: flex;
     align-items: center;

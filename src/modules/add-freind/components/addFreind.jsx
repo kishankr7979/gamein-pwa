@@ -58,24 +58,36 @@ const AddFreind = () => {
         }
         return data;
     }
-    const addToFrndList = async (from, to, otherDetails) => {
-        const res = await getFrndList(to);
-        const curr = await getCurrentUserData();
-        if (res?.length === 0) {
-            const { data, error } = await supabase
-                .from('freinds-db')
-                .insert([{ id: to, freinds: [{ id: from, otherDetails: otherDetails }] }, {
-                    id: from, freinds: [{ id: to, otherDetails: curr }]
-                }])
-        }
-        else {
-            const list = [...res?.[0]?.freinds, { id: from, otherDetails: otherDetails }];
-            const list2 = [...res?.[0]?.freinds, { id: to, otherDetails: curr }];
-            const { data, error } = await supabase
-                .from('freinds-db')
-                .update([{ freinds: list }, {freinds: list2}])
-                .match({ id: to })
 
+    const updateFrnds = async (whom, fr) => {
+        const { data, error } = await supabase
+            .from('freinds-db')
+            .update({ freinds: fr })
+            .match({ id: whom })
+        return data;
+    }
+
+    const addFrnd = async (id, fr) => {
+        const { data, error } = await supabase
+            .from('freinds-db')
+            .insert([{ id: id, freinds: fr }])
+
+        return data;
+    }
+    const addToFrndList = async (from, to, otherDetails) => {
+        const curr = await getCurrentUserData();
+        const res = await getFrndList(to);
+        const { data, error } = await supabase
+            .from('freinds-db')
+            .insert([{ id: to, freinds: [{ id: from, otherDetails: otherDetails }] },
+            { id: from, freinds: [{ id: to, otherDetails: curr }] }
+            ])
+        if (data) {
+            console.log(data);
+        }
+        if (error) {
+            const newF = await addFrnd(from, [{ id: to, otherDetails: curr }])
+            const d = await updateFrnds(to, [...res?.[0]?.freinds, { id: from, otherDetails: otherDetails }])
         }
     }
     const acceptReq = async (reqId, from, to, otherDetails) => {

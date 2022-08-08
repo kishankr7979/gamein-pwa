@@ -5,11 +5,14 @@ import { IoMdArrowBack } from 'react-icons/io';
 import { Input } from '@mui/material';
 import { FiSend } from 'react-icons/fi';
 import { supabase } from '../../../config/supabase';
+import { CgProfile } from 'react-icons/cg';
 import uuid from 'react-uuid'
+import moment from 'moment';
 const ChatScreen = () => {
     const navigate = useNavigate();
     const { id } = useParams();
     const [frnd, setFrnd] = useState();
+    const [displayChat, setDisplayChat] = useState();
     const getFrndDetails = async () => {
         const { data, error } = await supabase
             .from('user-db')
@@ -23,19 +26,27 @@ const ChatScreen = () => {
         const { data, error } = await supabase
             .from('chat-db')
             .select('*')
-            .match({ from: id })
+            .match({ from: id, to: userId })
         if (data) {
-            console.log(data);
+            return data;
         }
     }
     const getOutgoingChatData = async () => {
         const { data, error } = await supabase
             .from('chat-db')
             .select('*')
-            .match({ to: id })
+            .match({ from: userId, to: id })
         if (data) {
-            console.log(data);
+            return data;
         }
+    }
+    const allChats = async () => {
+        const res = await getIncomingChatData();
+        const res2 = await getOutgoingChatData();
+        const d = res.concat(res2);
+        console.table(d.sort((a, b) => a.created_at - b.created_at));
+        setDisplayChat(d);
+
     }
     const userId = JSON.parse(localStorage.getItem('token'))?.user?.uid;
     const [input, setInput] = useState('');
@@ -51,16 +62,13 @@ const ChatScreen = () => {
             })
         if (data) {
             console.table(data);
+            await allChats();
+            setInput('');
         }
         if (error) {
             console.error(error);
         }
     }
-    const chatMessages = () => (
-        <>
-            <span> hi</span>
-        </>
-    );
     const inputMessage = () => (
         <div className='send-message-container'>
             <Input value={input} onChange={(e) => setInput(e.target.value)} placeholder='write your message' fullWidth className='input' />
@@ -69,7 +77,7 @@ const ChatScreen = () => {
     )
 
     useEffect(() => {
-        (async () => Promise.all([await getFrndDetails(), await getIncomingChatData(), await getOutgoingChatData()]))();
+        (async () => Promise.all([await getFrndDetails(), await allChats()]))();
     }, [])
     return (
         <div class="chatscreen-container">
@@ -78,6 +86,15 @@ const ChatScreen = () => {
                     <IoMdArrowBack size={30} onClick={() => navigate(-1)} />
                 </div>
                 <span className='chat-name'>{frnd?.name}</span>
+            </div>
+            <div>
+                {displayChat?.sort((i) => i.created_at)?.map((i) => (
+                    <div className="chat-parent">
+                        <div className='chat-container' style={{ display: 'flex', gap: '10px', justifyContent: i.from === userId ? 'flex-start' : 'flex-end', alignItems: 'center' }}>
+                            <span>{i.message}</span>
+                        </div>
+                    </div>
+                ))}
             </div>
             <div className='footer'>
                 <div className='chat-input-container'>
