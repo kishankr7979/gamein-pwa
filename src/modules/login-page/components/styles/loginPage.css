@@ -1,10 +1,68 @@
-.parent-container {
+@import url('http://fonts.cdnfonts.com/css/dot-matrix');
+
+.parent1-container {
     height: 100vh;
     width: 100vw;
-    background: linear-gradient(180deg, rgba(69, 111, 218, 0.67) 29.69%, rgba(183, 39, 222, 0.07) 99.99%, rgba(203, 39, 230, 0) 100%);
-    min-height: 100vh;
+    background: rgb(44,62,80);
+    background: linear-gradient(90deg, rgba(44,62,80,1) 0%, rgba(0,0,0,1) 66%);
+ 
 }
-.gamein-logo-container{
+.login-box-main-container {
+    height: 70vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(93,133,235);
+    background: linear-gradient(298deg, rgba(93,133,235,1) 0%, rgba(0,0,0,1) 67%);
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    box-shadow: 10px 10px 10px 10px;
+}
+.phone-number{
+    margin: 0 20px 0 20px;
+    text-align: center;
+    height: 60px;
+    background: #272d3d;
+    border: 2px solid linear-gradient(298deg, rgba(93,133,235,1) 0%, rgba(0,0,0,1) 67%);
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-size: 20px;
+    color: rgb(93,133,235);
+    font-size: 30px;
+    font-family: 'Dot Matrix', sans-serif;
+    box-shadow: 5px 7px;
+}
+.phone-number:focus {
+    outline: none !important;
+}
+.next-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    width: 80px;
+    background: #272d3d;
+    border: 2px solid rgb(93,133,235);
+    border-radius: 30%;
+    position: absolute;
+    right: 10%;
+    margin-top: -10%;
+}
+.typewriter {
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+#demo {
+    font-family: 'Dot Matrix', sans-serif;
+    font-size: 50px;
+    color: rgb(93,133,235);
+}
+/* .gamein-logo-container{
     display: flex;
     flex-direction: column;
     position: fixed;
@@ -30,11 +88,6 @@
     line-height: 55px;
     color: #444444;
 }
-.login-box-main-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 .login-box-container {
     margin-left: 1em;
     margin-right: 1em;
@@ -54,13 +107,4 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-.phone-number-container{
-    width: 289px;
-    height: 65px;
-    background: #FFFFFF;
-    border: 2px solid #C4C4C4;
-    box-sizing: border-box;
-    border-radius: 10px;
-    font-size: 20px;
-}
+}*/

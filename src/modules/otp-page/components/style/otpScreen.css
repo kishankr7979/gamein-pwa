@@ -1,17 +1,53 @@
+@import url('http://fonts.cdnfonts.com/css/dot-matrix');
 
-.parent {
+.otp-parent-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    width: 100%;
-    background: linear-gradient(180deg, rgba(69, 111, 218, 0.68) 0%, rgba(203, 39, 229, 0) 97.4%);
+    width: 100vw;
+    background: rgb(44,62,80);
+    background: linear-gradient(90deg, rgba(44,62,80,1) 0%, rgba(0,0,0,1) 66%);
 }
-
-.parent-div {
-    display: flex;
-    position: absolute;
-    top: 20%;
+.otp-container {
+    width: 100%;
+}
+.otp {
+    height: 60px;
+    font-size: 25px;
+    text-align: center;
+    background: #272d3d;
+    font-family: 'Dot Matrix', sans-serif;
+    border: 2px solid rgb(93,133,235);
+    color: rgb(93,133,235);
+    border-radius: 10px;
+    box-shadow: 5px 7px;
+}
+.otp:focus {
+    outline: none !important;
+    height: 60px;
+    font-size: 25px;
+    text-align: center;
+    background: #272d3d;
+    font-family: 'Dot Matrix', sans-serif;
+    border: 2px solid rgb(93,133,235);
+    color: rgb(93,133,235);
+    border-radius: 10px;
+    box-shadow: 10px 10px;
+}
+    /* margin: 0 20px 0 20px;
+    text-align: center;
+    height: 60px;
+    background: #272d3d;
+    border: 2px solid linear-gradient(298deg, rgba(93,133,235,1) 0%, rgba(0,0,0,1) 67%);
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-size: 20px;
+    color: rgb(93,133,235);
+    font-size: 30px;
+    font-family: 'Dot Matrix', sans-serif; */
+.otp-con {
+   width: 100%;
 }
 .inside-parent {
     width: 100%;

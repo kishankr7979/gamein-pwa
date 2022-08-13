@@ -8822,6 +8822,11 @@ react-transition-group@^4.4.2:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
+react-type-animation@^2.0.9:
+  version "2.0.9"
+  resolved "https://registry.yarnpkg.com/react-type-animation/-/react-type-animation-2.0.9.tgz#7933eb122f2b92dc88cac1ffc8652924053629a1"
+  integrity sha512-x0qLgPYGAL3SkrjnBcGGk2Ro0Bp52u7qa/iRY+7m8wigTrqj6USqT0HV/pG4/OA4X0mvRhezWYLtNlsI/0ZmOQ==
+
 react-uuid@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/react-uuid/-/react-uuid-1.0.2.tgz#c77cea91cf38eafb1aaa7910f92621b2ed91b969"

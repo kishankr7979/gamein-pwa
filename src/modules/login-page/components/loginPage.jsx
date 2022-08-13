@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './styles/loginPage.css';
 import AvatarIcon from '../assets/avatar-icon.png'
 import NextIcon from '../assets/next-icon.png'
@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { Firebase, auth, firebase } from '../../../config/firebase';
 import OtpComponent from '../../otp-page/components/otpScreen';
 import { Rings } from 'react-loader-spinner';
+import { MdNavigateNext } from 'react-icons/md';
 const LoginPage = () => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [loading, setLoading] = useState(false);
@@ -30,28 +31,32 @@ const LoginPage = () => {
         }).catch((err) => console.error(err));
 
     }
+    var i = 0;
+    var txt = 'GameIN';
+    var speed = 100;
 
+    function typeWriter() {
+        if (i < txt.length) {
+            document.getElementById("demo").innerHTML += txt.charAt(i);
+            i++;
+            setTimeout(typeWriter, speed);
+        }
+    }
+    useEffect(() => {
+        step === 1 && typeWriter();
+    }, [])
     return (
         <>
-            {step === 1 ? (<div className="parent-container">
+            {step === 1 ? (<div className="parent1-container">
                 <div id="recaptcha-container"></div>
                 {!loading ? (<> <div className="login-box-main-container">
-                    <div className="gamein-logo-container">
-                        <img src={GameInIcon} alt="gamein-logo" height="103" width="156" />
-                        <div className="gamein-wording-container">
-                            <span className="game-wording">Game<span className="in-wording">IN</span></span>
-                        </div>
+                    <input type="number" placeholder="Mobile Number" className="phone-number" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)}></input>
+                </div>
+                    <div className="next-btn" onClick={ButtonEvent}><MdNavigateNext color='rgb(93,133,235)' size={50} /></div>
+                    <div class="typewriter">
+                        <p id="demo"></p>
                     </div>
-                    <div className="login-box-container">
-                        <div className="img-container">
-                            <img src={AvatarIcon} alt="avatar" height="49" width="49" />
-                        </div>
-                        <div className="phone-container">
-                            <input type="number" placeholder="Mobile Number" className="phone-number-container" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)}></input>
-                        </div>
-                        <ButtonComponent buttonImage={NextIcon} buttonAction={ButtonEvent} buttonBackgroungColor='red' />
-                    </div>
-                </div></>) : (<><Rings ariaLabel="loading-indicator" color='#2196F3' width='200px' height='200px' /></>)}
+                </>) : (<><Rings ariaLabel="loading-indicator" color='#2196F3' width='200px' height='200px' /></>)}
 
             </div>) : (<OtpComponent final={final} />)}
         </>

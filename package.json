@@ -26,6 +26,7 @@
     "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0",
     "react-tabs": "^4.2.0",
+    "react-type-animation": "^2.0.9",
     "react-uuid": "^1.0.2",
     "serve": "^13.0.2",
     "uuidv4": "^6.2.13",
