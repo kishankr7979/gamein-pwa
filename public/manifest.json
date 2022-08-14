@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "fullscreen",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "linear-gradient(298deg, rgba(93,133,235,1) 0%, rgba(0,0,0,1) 67%)",
+  "background_color": "rgb(93,133,235)"
 }
