@@ -122,31 +122,41 @@ const HomeScreen = () => {
         else return;
 
     }
-
-    function getBase64(file, cb) {
-        let reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = function () {
-            cb(reader.result)
-        };
-        reader.onerror = function (error) {
-            console.log('Error: ', error);
-        };
-    }
     const uploadImagetoStorage = async (file) => {
         setLoading(true);
-        const filePath = uuid() + '-' + file.name
         console.log(file);
-        let idCardBase64 = '';
-        getBase64(file, (result) => {
-            idCardBase64 = result;
-            console.log(result);
-            axios.post(`http://freeimage.host/api/1/upload/?key=6d207e02198a847aa98d0a2a901485a5&source=${result}`).then((resp) => {
-                console.log(resp);
-            })
-            setLoading(false);
-            debugger;
-        })
+        var reader = new FileReader();
+        reader.onloadend = async function() {
+            console.log('Encoded Base 64 File String:', reader.result);
+            /******************* for Binary ***********************/
+            var data=(reader.result).split(',')[1];
+             var binaryBlob = atob(data);
+             console.log('Encoded Binary File String:', binaryBlob);
+             const construct = {
+                 key: '00001d4a7794e2c7dbfdc8b00e5872b8',
+                 media: binaryBlob,
+             }
+             try{
+                const resp = await axios.post('https://thumbsnap.com/api/upload', construct, {
+                    headers: {
+                        Connection: "keep-alive",
+                        "Content-Type": "form-data"
+                    },
+                    form: true,
+
+                })
+                if(resp) {
+                    console.log(resp);
+                }
+            }
+            catch(e) {console.error(e)}
+          }
+          reader.readAsDataURL(file);
+       
+       
+        /* 
+            https://thumbsnap.com/api/upload
+        */
 
         // const { data, error } = await supabase.storage.from('feed-image').upload(filePath, file, {
         //     cacheControl: '3600',
