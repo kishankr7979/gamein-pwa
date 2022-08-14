@@ -1,68 +1,25 @@
-.parent-container {
-    height: 100vh;
-    width: 100vw;
-    background: linear-gradient(180deg, #809BE1 29.69%, rgba(203, 39, 229, 0) 100%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-.bottom-tabs {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-}
-.bottom-tabs-main-container {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    flex: 1;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    max-width: 720px;
-    height: 78px;
-    background: rgba(168, 140, 225, 0.47);
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-}
-.bottom-tabs-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 0.5;
-}
-.news-feed-section {
-    position: absolute;
-    bottom: 15%;
-    border-radius: 15px;
-    display: flex;
-    height: 55vh;
-    width: 90vw;
-    max-width: 720px;
-    overflow: scroll;
-    background: #f2f2f2;
-    display: flex;
-}
 .news-feed-container-internal {
     display: flex;
     flex-direction: column;
+    gap: 12px;
+    margin: 6px 12px 6px 12px;
     width: 100%;
-    overflow: scroll;
+    overflow-y: auto;
 }
 .misc-container {
     display: flex;
     justify-content: flex-start;
     padding: 10px;
+    gap: 10px;
 }
 .post-card-main-container {
-    margin-left: 1em;
-    margin-right: 1em;
-    margin-top: 1em;
-    border: 1px solid grey;
+    border: 1px solid rgb(93,133,235);
     padding: 10px;
     border-radius: 15px;
-    width: 100%,
+    width: 100%;
+    background: #272d3d;
+    color: rgb(93,133,235);
+    font-family: 'Dot Matrix', sans-serif;
 }
 .internal-card-container {
     display: flex;
@@ -83,41 +40,6 @@
 .second-section-container {
     flex: 0.6;
 }
-.top-nav-main-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
-    position: absolute;
-    top: 0;
-    width: 100vw;
-    max-width: 720px;
-    height: 58px;
-    background: rgba(195, 203, 250, 0.47);
-    border-bottom-right-radius: 15px;
-    border-bottom-left-radius: 15px;
-}
-.game-in-title {
-    display: flex;
-    justify-content:space-between;
-    align-items: center;
-    width: 100%;
-    padding: 0 10px 0 10px;
-    font-family: 'Short Stack';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 45px;
-    line-height: 55px;
-    color: #f2f2f2;
-}
-.in-title {
-    font-family: 'Short Stack';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 45px;
-    line-height: 55px;
-    color: #444444;
-}
 .new-feed-post {
     display: flex;
     flex-direction: column;
@@ -130,70 +52,6 @@
     height: 15vh;
     display: flex;
     background: #f2f2f2;
-}
-@media screen and (min-width: 350px) and (max-width: 380px){
-    .new-feed-post {
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-        position: absolute;
-        top: 10%;
-        width: 90vw;
-        border-radius: 15px;
-        max-width: 720px;
-        height: 18vh;
-        display: flex;
-        background: #f2f2f2;
-    }
-}
-.input-area-internal-container {
-    display: flex;
-    padding: 10px;
-    overflow: scroll;
-}
-.input-area {
-    width: 80vw;
-    background: #f2f2f2;
-    border: none;
-    height: 60px;
-    font-family: 'Scada';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 22px;
-    line-height: 27px;
-    color: #545454;
-    overflow: scroll;
-
-}
-.input-area-multi-buttons-container {
-    display: flex;
-    gap: 10px;
-    height: 30px;
-    width: 80vw;
-}
-.input-area-buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.photos {
-    display: flex;
-    flex: 0.3;
-    gap: 2px;
-    justify-content: center;
-    align-items: center;
-    background: #F4F3F3;
-    border: 1px solid #C4C4C4;
-    box-sizing: border-box;
-    border-radius: 10px;
-    font-family: 'Scada';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 15px;
-    /* identical to box height */
-    color: #000000;
-
 }
 .videos {
     display: flex;

@@ -4,13 +4,13 @@ const bottomTabList = [
     {
         id: 1,
         name: 'Home',
-        icon: <ImFeed size={50}/>,
+        icon: <ImFeed size={50} color='rgb(93,133,235)'/>,
         onClick: '/'
     },
     {
         id: 2,
         name: 'Freinds',
-        icon: <FaUserFriends size={50}/>,
+        icon: <FaUserFriends size={50} color='#ffffff'/>,
         onClick: '/add-buddy'
     },
 
